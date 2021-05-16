@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,83 +8,49 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/txt_scorelabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/score"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
-
-    <TextView
-        android:id="@+id/txt_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_00000"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toEndOf="@+id/txt_scorelabel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
-
-    <GridView
-        android:layout_width="335dp"
-        android:layout_height="396dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_score"
-        app:layout_constraintVertical_bias="0.157" />
-
-    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2048 Game"
+        android:text="@string/_2048_game"
         android:textColor="#FF8F07"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txt_score"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
+    <com.android.example.a2048gameapp.ui.ScoreView
+        android:id="@+id/main_scoreboxview_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
-        android:backgroundTint="#FF9C07"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_dynamic"
-        app:layout_constraintVertical_bias="0.245"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        android:layout_marginTop="64dp"
+        custom:label_text="Score"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.335"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
+    <com.android.example.a2048gameapp.ui.ScoreView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="#FF8707"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/_dynamic"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_set_as" />
+        custom:label_text="Best"
+        custom:layout_constraintBottom_toBottomOf="@+id/main_scoreboxview_current"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintHorizontal_bias="0.164"
+        custom:layout_constraintStart_toEndOf="@+id/main_scoreboxview_current"
+        custom:layout_constraintTop_toBottomOf="@+id/textView"
+        custom:layout_constraintVertical_bias="1.0" />
+
+    <com.android.example.a2048gameapp.ui.MatrixGridView
+        android:layout_width="385dp"
+        android:layout_height="367dp"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@+id/main_scoreboxview_current"
+        custom:layout_constraintVertical_bias="0.277" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
