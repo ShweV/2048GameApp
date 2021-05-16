@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">2048GameApp</string>
+    <string name="score">Score :</string>
+    <string name="_00000">00000</string>
+</resources>
