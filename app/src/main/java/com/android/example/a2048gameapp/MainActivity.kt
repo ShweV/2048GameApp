@@ -9,10 +9,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
 import com.android.example.a2048gameapp.`interface`.SwipeShift
-import com.android.example.a2048gameapp.`interface`.onStatDialogClickListener
 import com.android.example.a2048gameapp.data.GamePreferences
 import com.android.example.a2048gameapp.ui.*
+import com.android.example.a2048gameapp.viewModel.MainViewModel
+import com.android.example.a2048gameapp.viewModel.ViewModelFactory
 
 class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
     private var textViewGameTitle: TextView? = null
     private var slideUpAnimation: Animation? = null
     private var textViewLucky: TextView? = null
+    private lateinit var mainViewModel : MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         matrixView!!.setMoveListener(object : MoveListener{
             override fun onMove(score: Int, gameOver: Boolean, newSquare: Boolean) {
                 if (gameOver) {
-                    displayGameOverDialog()
+                    mainViewModel.displayGameOverDialog()
                 } else {
                     if (!newSquare) {
                         textViewLucky!!.setVisibility(View.VISIBLE)
@@ -68,15 +71,18 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
                             GamePreferences.saveBestScore(bestScore?.getScore()!!)
                         }
                         if (score >= 2048) {
-                            displayCongratsDialog()
+                            mainViewModel.displayCongratsDialog()
                         }
                     }
                 }
             }
         })
-
+        mainViewModel = ViewModelProvider(this, ViewModelFactory(matrixView!!, currentScore!!,
+            this)).get(MainViewModel::class.java)
         buttonNewGame = findViewById<View>(R.id.button_new_game) as Button
-        buttonNewGame?.setOnClickListener(View.OnClickListener { onNewGameClick() })
+        buttonNewGame?.setOnClickListener( {
+            mainViewModel.onNewGameClick()
+        })
 
         mainLayout = findViewById<ConstraintLayout>(R.id.main_layout)
         mainLayout?.setOnTouchListener(this)
@@ -98,48 +104,6 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
             }
         })
     }
-
-    private fun onNewGameClick() {
-        matrixView!!.reset()
-        currentScore!!.resetScore()
-    }
-
-    private fun displayGameOverDialog() {
-        val d = StatDialog(this, "Oops, you lost! Try again now?", "Cancel", "New Game")
-        d.setOnStatDialogClickListener(object : onStatDialogClickListener {
-            override fun onLeftClick() {
-                d.dismiss()
-            }
-
-            override fun onRightClick() {
-                d.dismiss()
-                onNewGameClick()
-            }
-        })
-        d.dialog?.show()
-    }
-
-    private fun displayCongratsDialog() {
-        val d = StatDialog(
-            this,
-            "Wow, you win! Continue to get a better > 2048?",
-            "New Game",
-            "Continue"
-        )
-        d.setOnStatDialogClickListener(object : onStatDialogClickListener {
-            override fun onLeftClick() {
-                d.dismiss()
-                onNewGameClick()
-            }
-
-            override fun onRightClick() {
-                d.dismiss()
-            }
-        })
-        d.dialog?.show()
-    }
-
-
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         return swipeListener!!.getGestureDetector()!!.onTouchEvent(event)
