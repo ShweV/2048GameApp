@@ -15,7 +15,7 @@ class GamePreferences {
     companion object {
         private var prefs: SharedPreferences? = null
         fun initialize(context: Context) {
-            if (prefs== null) {
+            if (prefs == null) {
                 prefs = context.getSharedPreferences("2048.prefs_", Context.MODE_PRIVATE)
             }
         }

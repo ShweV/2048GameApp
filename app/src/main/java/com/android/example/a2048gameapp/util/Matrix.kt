@@ -24,7 +24,7 @@ class Matrix {
 
     private var newSpot: Spot? = null
 
-    fun Matrix() {
+    init {
         random = Random()
         numbers = Array(N) { IntArray(N) }
         for (i in 0 until N) {
@@ -40,6 +40,7 @@ class Matrix {
         for (i in 0..4) {
             spawn(2)
         }
+
     }
 
     private fun generateAll() {
