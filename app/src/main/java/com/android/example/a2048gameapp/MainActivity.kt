@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
     }
 
     override fun onResume() {
-        bestScore!!.setScore(GamePreferences.getBestScore())
+        //bestScore!!.setScore(GamePreferences.getBestScore())
         super.onResume()
     }
 

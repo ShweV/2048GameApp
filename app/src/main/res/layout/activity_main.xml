@@ -26,7 +26,7 @@
         android:id="@+id/main_scoreboxview_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="112dp"
         custom:label_text="Score"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintHorizontal_bias="0.335"
@@ -47,8 +47,8 @@
 
     <com.android.example.a2048gameapp.ui.MatrixGridView
         android:id="@+id/matrixGridView"
-        android:layout_width="385dp"
-        android:layout_height="367dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
@@ -59,15 +59,15 @@
         android:id="@+id/button_new_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
         android:layout_marginBottom="68dp"
         android:background="@color/aluminum5"
         android:text="@string/new_game"
         custom:iconTint="@color/aluminum5"
         custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toBottomOf="@+id/matrixGridView"
-        custom:layout_constraintVertical_bias="1.0" />
+        custom:layout_constraintVertical_bias="0.725" />
 
     <TextView
         android:id="@+id/main_textview_lucky"
@@ -83,6 +83,4 @@
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toBottomOf="@+id/button_new_game" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

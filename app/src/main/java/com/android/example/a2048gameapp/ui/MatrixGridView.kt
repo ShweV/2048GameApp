@@ -32,7 +32,7 @@ class MatrixGridView(context: Context?, attrs: AttributeSet?) : TableLayout(cont
 
     private var matrix: Matrix? = null
 
-    private val borderThickness = 15
+    private val borderThickness = 10
 
     private val velocityTracker: VelocityTracker? = null
 
@@ -56,6 +56,8 @@ class MatrixGridView(context: Context?, attrs: AttributeSet?) : TableLayout(cont
 
     private var moreMove = true
 
+    
+
     init {
         val inflater = LayoutInflater.from(context)
         val v: View = inflater.inflate(R.layout.matrix_grid, this)
@@ -64,22 +66,22 @@ class MatrixGridView(context: Context?, attrs: AttributeSet?) : TableLayout(cont
             arrayOfNulls(N)
         }
 
-        tiles[0][0] = v.findViewById<View>(R.id.button00) as Button
-        tiles[0][1] = v.findViewById<View>(R.id.button01) as Button
-        tiles[0][2] = v.findViewById<View>(R.id.button02) as Button
-        tiles[0][3] = v.findViewById<View>(R.id.button03) as Button
-        tiles[1][0] = v.findViewById<View>(R.id.button10) as Button
-        tiles[1][1] = v.findViewById<View>(R.id.button11) as Button
-        tiles[1][2] = v.findViewById<View>(R.id.button12) as Button
-        tiles[1][3] = v.findViewById<View>(R.id.button13) as Button
-        tiles[2][0] = v.findViewById<View>(R.id.button20) as Button
-        tiles[2][1] = v.findViewById<View>(R.id.button21) as Button
-        tiles[2][2] = v.findViewById<View>(R.id.button22) as Button
-        tiles[2][3] = v.findViewById<View>(R.id.button23) as Button
-        tiles[3][0] = v.findViewById<View>(R.id.button30) as Button
-        tiles[3][1] = v.findViewById<View>(R.id.button31) as Button
-        tiles[3][2] = v.findViewById<View>(R.id.button32) as Button
-        tiles[3][3] = v.findViewById<View>(R.id.button33) as Button
+        tiles[0][0] = v.findViewById(R.id.button00)
+        tiles[0][1] = v.findViewById(R.id.button01)
+        tiles[0][2] = v.findViewById(R.id.button02)
+        tiles[0][3] = v.findViewById(R.id.button03)
+        tiles[1][0] = v.findViewById(R.id.button10)
+        tiles[1][1] = v.findViewById(R.id.button11)
+        tiles[1][2] = v.findViewById(R.id.button12)
+        tiles[1][3] = v.findViewById(R.id.button13)
+        tiles[2][0] = v.findViewById(R.id.button20)
+        tiles[2][1] = v.findViewById(R.id.button21)
+        tiles[2][2] = v.findViewById(R.id.button22)
+        tiles[2][3] = v.findViewById(R.id.button23)
+        tiles[3][0] = v.findViewById(R.id.button30)
+        tiles[3][1] = v.findViewById(R.id.button31)
+        tiles[3][2] = v.findViewById(R.id.button32)
+        tiles[3][3] = v.findViewById(R.id.button33)
         leftAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_left)
         rightAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_right)
         upAnimation = AnimationUtils.loadAnimation(context, R.anim.slide_up)
@@ -116,11 +118,11 @@ class MatrixGridView(context: Context?, attrs: AttributeSet?) : TableLayout(cont
                 } else {
                     tiles[r][c]!!.text = Integer.toString(number)
                 }
-                tiles[r][c]!!.background = resources.getDrawable(getDrawableId(number))
+                tiles[r][c]!!.background = resources.getDrawable(getDrawableId(number), null)
                 if (matrix!!.isMergeSpot(r, c)) {
                     tiles[r][c]!!.startAnimation(appearingAnimation)
                 }
-                // applyEffect(tiles[r][c], dir);
+                 applyEffect(tiles[r][c]!!, dir);
             }
         }
         invalidate()
